@@ -1,6 +1,7 @@
 package com.picsart.ui.tests.search;
 
 
+import com.picsart.ui.components.SignInPopup;
 import com.picsart.ui.pages.ImagePage;
 import com.picsart.ui.pages.SearchPage;
 import com.picsart.ui.tests.base.BaseTest;
@@ -15,12 +16,14 @@ public class SearchTests extends BaseTest {
     private SoftAssert softAssert;
     private SearchPage searchPage;
     private ImagePage imagePage;
+    private SignInPopup signInPopup;
 
     @BeforeMethod
     public void init() {
         softAssert = new SoftAssert();
         searchPage = new SearchPage(driver);
         imagePage = new ImagePage(driver);
+        signInPopup = new SignInPopup(driver);
     }
 
     @Test
@@ -46,6 +49,12 @@ public class SearchTests extends BaseTest {
         softAssert.assertTrue(imagePage.isSaveButtonVisible(), "Save button should be visible");
         softAssert.assertTrue(imagePage.isEditThisImageButtonVisible(), "Edit button should be visible");
         softAssert.assertAll();
+
+        imagePage.clickOnLikeButton();
+        boolean signInPopupVisible = signInPopup.isSignInPopupVisible();
+        assertTrue(signInPopupVisible, "Sign in popup should be visible");
+
+        signInPopup.closeSignInPopup();
 
 
         System.out.println("debug");

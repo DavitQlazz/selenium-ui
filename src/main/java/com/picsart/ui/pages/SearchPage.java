@@ -4,15 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class SearchPage extends BasePage<SearchPage> {
     private final String SEARCH_PAGE_PATH = baseUrl + "search/";
 
     @FindBy(css = "#onetrust-accept-btn-handler")
     private WebElement acceptAllCookiesBtn;
 
-    @FindBy(css = ".button-skin-content-0-1-83")
+    @FindBy(css = "[data-testid='search-header-filter']")
     private WebElement filterBtn;
 
     @FindBy(css = "[data-testid='search-filter-root']")
@@ -28,7 +26,7 @@ public class SearchPage extends BasePage<SearchPage> {
     private WebElement plusBadge;
 
     @FindBy(css = "[data-testid='base-card-link']")
-    private List<WebElement> images;
+    private WebElement image;
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -51,7 +49,7 @@ public class SearchPage extends BasePage<SearchPage> {
     }
 
     public void clickOnFirstImage() {
-        click(images.getFirst());
+        click(image);
     }
 
     public SearchPage checkPersonalFilter() {

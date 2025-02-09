@@ -30,4 +30,9 @@ public class ImagePage extends BasePage<ImagePage> {
     public boolean isSaveButtonVisible() {
         return wait.waitUntilElementToBeVisible(saveBtn).isDisplayed();
     }
+
+    public ImagePage clickOnLikeButton() {
+        click(likeBtn);
+        return this;
+    }
 }

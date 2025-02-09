@@ -21,11 +21,12 @@ public class WaitUtils {
     }
 
     public void waitForPageLoadComplete() {
-        longWait.until((jsReturnsValue("return document.readyState=='complete';")));
+        longWait.until((jsReturnsValue("return document.readyState =='complete';")));
+        new NetworkUtils().waitForResourcesToLoad(config.longTimeout());
     }
 
-    public void waitForElementClickable(WebElement element) {
-        longWait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForElementClickable(WebElement element) {
+        return longWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public WebElement waitUntilElementToBeVisible(WebElement element) {

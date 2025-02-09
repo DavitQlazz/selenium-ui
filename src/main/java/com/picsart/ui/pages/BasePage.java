@@ -6,9 +6,8 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.LoadableComponent;
 
-public abstract class  BasePage<T extends BasePage<T>> {
+public abstract class BasePage<T extends BasePage<T>> {
     public static final ConfigManager config = ConfigFactory.create(ConfigManager.class);
     protected String baseUrl = config.baseUrl();
     protected WebDriver driver;
@@ -36,8 +35,8 @@ public abstract class  BasePage<T extends BasePage<T>> {
     }
 
     protected void click(WebElement element) {
+        wait.waitForPageLoadComplete();
         wait.waitUntilElementToBeVisible(element);
-        wait.waitForElementClickable(element);
-        element.click();
+        wait.waitForElementClickable(element).click();
     }
 }
