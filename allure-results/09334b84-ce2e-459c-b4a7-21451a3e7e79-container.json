@@ -1,1 +1,0 @@
-{"uuid":"09334b84-ce2e-459c-b4a7-21451a3e7e79","name":"com.picsart.ui.tests.search.SearchTests","children":["76e3cdc2-832d-4701-acde-ec89c950484d"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1739111165629,"stop":1739111167477}],"afters":[],"start":1739111165610,"stop":1739111179163}
