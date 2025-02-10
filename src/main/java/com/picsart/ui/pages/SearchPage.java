@@ -1,5 +1,6 @@
 package com.picsart.ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,10 +21,16 @@ public class SearchPage extends BasePage<SearchPage> {
     private WebElement iframeSocialSearch;
 
     @FindBy(css = "[aria-label='licenses-Personal-checkbox']")
-    private WebElement personalFilterCheckBox;
+    private WebElement personalFilterCheckBoxCheck;
+
+    @FindBy(css = "[aria-label='licenses-Personal'] label")
+    private WebElement personalFilterCheckBoxUncheck;
 
     @FindBy(css = "i[data-testid='badge']")
     private WebElement plusBadge;
+
+    @FindBy(css = "[data-testid='search-card-root']:has([data-testid='badge'])")
+    private WebElement plusAsset;
 
     @FindBy(css = "[data-testid='base-card-link']")
     private WebElement image;
@@ -32,40 +39,60 @@ public class SearchPage extends BasePage<SearchPage> {
         super(driver);
     }
 
+    @Step("Open search page")
     public SearchPage open() {
         open(SEARCH_PAGE_PATH);
         return this;
     }
 
+    @Step
     public SearchPage acceptCookies() {
         click(acceptAllCookiesBtn);
         switchToFrame(iframeSocialSearch);
         return this;
     }
 
+    @Step
     public SearchPage clickOnFilterButton() {
         click(filterBtn);
         return this;
     }
 
+    @Step
     public void clickOnFirstImage() {
         click(image);
     }
 
+    @Step
+    public void clickOnFirstPlusAsset() {
+        click(plusAsset);
+    }
+
+    @Step
     public SearchPage checkPersonalFilter() {
-        click(personalFilterCheckBox);
+        click(personalFilterCheckBoxCheck);
         return this;
     }
 
-    public boolean isFilterToolbarVisible() {
-        return searchFilterToolbar.isDisplayed();
+    @Step
+    public SearchPage uncheckPersonalFilter() {
+        switchToFrame(iframeSocialSearch);
+        click(personalFilterCheckBoxUncheck);
+        return this;
     }
 
+    @Step
+    public boolean isFilterToolbarInvisible() {
+        return isInvisible(searchFilterToolbar);
+    }
+
+    @Step
     public boolean isPlusBadgeVisible() {
-        return wait.waitUntilElementToBeVisible(plusBadge).isDisplayed();
+        return isVisible(plusBadge);
     }
 
+    @Step
     public boolean isPlusBadgeInvisible() {
-        return wait.waitUntilElementToBeInvisible(plusBadge);
+        return isInvisible(plusBadge);
     }
 }

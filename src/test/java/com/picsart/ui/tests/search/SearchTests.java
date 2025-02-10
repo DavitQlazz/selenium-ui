@@ -2,6 +2,7 @@ package com.picsart.ui.tests.search;
 
 
 import com.picsart.ui.components.SignInPopup;
+import com.picsart.ui.pages.EditorPage;
 import com.picsart.ui.pages.ImagePage;
 import com.picsart.ui.pages.SearchPage;
 import com.picsart.ui.tests.base.BaseTest;
@@ -9,7 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class SearchTests extends BaseTest {
@@ -17,6 +17,7 @@ public class SearchTests extends BaseTest {
     private SearchPage searchPage;
     private ImagePage imagePage;
     private SignInPopup signInPopup;
+    private EditorPage editorPage;
 
     @BeforeMethod
     public void init() {
@@ -24,25 +25,24 @@ public class SearchTests extends BaseTest {
         searchPage = new SearchPage(driver);
         imagePage = new ImagePage(driver);
         signInPopup = new SignInPopup(driver);
+        editorPage = new EditorPage(driver);
     }
 
     @Test
     public void searchFilterTest() {
-        boolean isFilterVisible = searchPage
+        boolean isFilterInvisible = searchPage
                 .open()
                 .acceptCookies()
                 .clickOnFilterButton()
-                .isFilterToolbarVisible();
+                .isFilterToolbarInvisible();
 
-        assertFalse(isFilterVisible, "Filter toolbar should not be visible");
+        assertTrue(isFilterInvisible, "Filter toolbar should not be visible");
 
         searchPage.clickOnFilterButton();
-        boolean plusBadgeVisible = searchPage.isPlusBadgeVisible();
-        assertTrue(plusBadgeVisible, "Plus badges should be visible");
+        assertTrue(searchPage.isPlusBadgeVisible(), "Plus badges should be visible");
 
         searchPage.checkPersonalFilter();
-        boolean plusBadgeInvisible = searchPage.isPlusBadgeInvisible();
-        assertTrue(plusBadgeInvisible, "Plus badges should be hidden");
+        assertTrue(searchPage.isPlusBadgeInvisible(), "Plus badges should be hidden");
 
         searchPage.clickOnFirstImage();
         softAssert.assertTrue(imagePage.isImageLikedButtonVisible(), "Like button should be visible");
@@ -51,10 +51,16 @@ public class SearchTests extends BaseTest {
         softAssert.assertAll();
 
         imagePage.clickOnLikeButton();
-        boolean signInPopupVisible = signInPopup.isSignInPopupVisible();
-        assertTrue(signInPopupVisible, "Sign in popup should be visible");
+        assertTrue(signInPopup.isSignInPopupVisible(), "Sign in popup should be visible");
 
         signInPopup.closeSignInPopup();
+        imagePage.goBack();
+        searchPage
+                .uncheckPersonalFilter()
+                .clickOnFirstPlusAsset();
+        signInPopup.closeSignInPopup();
+        softAssert.assertTrue(editorPage.isEditorToolbarVisible(), "Editor toolbar should be visible");
+        softAssert.assertTrue(editorPage.isCanvasVisible(), "Canvas should be visible");
 
 
         System.out.println("debug");

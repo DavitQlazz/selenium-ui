@@ -13,8 +13,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.source>21</maven.compiler.source>
-        <aspectj.version>1.9.19</aspectj.version>
-        <allure.version>2.24.0</allure.version>
+        <aspectj.version>1.9.22.1</aspectj.version>
+        <allure.version>2.29.1</allure.version>
         <selenide.version>4.28.1</selenide.version>
         <testng.version>7.10.2</testng.version>
     </properties>
@@ -77,7 +77,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.12.0</version>
+                <version>2.15.2</version>
             </plugin>
         </plugins>
     </build>

@@ -2,6 +2,7 @@ package com.picsart.ui.pages;
 
 import com.picsart.ui.utils.ConfigManager;
 import com.picsart.ui.utils.WaitUtils;
+import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,5 +39,20 @@ public abstract class BasePage<T extends BasePage<T>> {
         wait.waitForPageLoadComplete();
         wait.waitUntilElementToBeVisible(element);
         wait.waitForElementClickable(element).click();
+    }
+
+    protected boolean isVisible(WebElement element) {
+        wait.waitForPageLoadComplete();
+        return wait.waitUntilElementToBeVisible(element).isDisplayed();
+    }
+
+    protected boolean isInvisible(WebElement element) {
+        wait.waitForPageLoadComplete();
+        return wait.waitUntilElementToBeInvisible(element);
+    }
+
+    @Step
+    public void goBack() {
+        driver.navigate().back();
     }
 }
