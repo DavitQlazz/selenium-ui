@@ -35,6 +35,13 @@ public class SearchPage extends BasePage<SearchPage> {
     @FindBy(css = "[data-testid='base-card-link']")
     private WebElement image;
 
+    @FindBy(xpath = "//*[text()='Images']/ancestor::div[contains(@data-testid, 'shelve-carousel-root')]")
+    private WebElement imagesSection;
+
+    @FindBy(xpath = "//*[text()='Images']/ancestor::div[contains(@data-testid, 'shelve-carousel-root')]" +
+            "//div[@data-automation='search-item-premium'] /a")
+    private WebElement plusImage;
+
     public SearchPage(WebDriver driver) {
         super(driver);
     }
@@ -64,8 +71,12 @@ public class SearchPage extends BasePage<SearchPage> {
     }
 
     @Step
-    public void clickOnFirstPlusAsset() {
-        click(plusAsset);
+    public void clickOnFirstPlusImage() {
+        click(plusImage);
+    }
+
+    public String getFirstPlusImageLink() {
+        return getImageLink(plusImage);
     }
 
     @Step
@@ -94,5 +105,10 @@ public class SearchPage extends BasePage<SearchPage> {
     @Step
     public boolean isPlusBadgeInvisible() {
         return isInvisible(plusBadge);
+    }
+
+    public SearchPage scrollToImagesSection() {
+        scrollDown(200);
+        return this;
     }
 }

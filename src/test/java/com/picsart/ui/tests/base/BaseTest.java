@@ -1,18 +1,19 @@
 package com.picsart.ui.tests.base;
 
 import com.picsart.ui.base.DriverManager;
-import com.picsart.ui.listeners.ReportListener;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
-@Listeners({ReportListener.class})
 public class BaseTest {
     protected WebDriver driver;
 
     @Parameters("resolution")
     @BeforeMethod
-    public void setup(@Optional("1440x900") String resolution) {
+    public void setup(@Optional("1366x768") String resolution) {
         driver = DriverManager.getDriver();
         setResolution(resolution);
     }

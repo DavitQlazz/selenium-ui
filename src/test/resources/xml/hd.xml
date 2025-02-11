@@ -1,0 +1,8 @@
+<suite name="Parallel Suite" parallel="tests">
+    <test name="Test on 1280x720">
+        <parameter name="resolution" value="1280x720"/>
+        <classes>
+            <class name="com.picsart.ui.tests.search.SearchTests"/>
+        </classes>
+    </test>
+</suite>

@@ -14,15 +14,17 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 public class WaitUtils {
     private final WebDriverWait longWait;
     private final WebDriverWait shortWait;
+    private final NetworkUtils networkUtils;
 
     public WaitUtils(WebDriver driver) {
         this.shortWait = new WebDriverWait(driver, Duration.ofSeconds(config.shortTimeout()));
         this.longWait = new WebDriverWait(driver, Duration.ofSeconds(config.longTimeout()));
+        this.networkUtils = new NetworkUtils();
     }
 
     public void waitForPageLoadComplete() {
         longWait.until((jsReturnsValue("return document.readyState =='complete';")));
-        new NetworkUtils().waitForResourcesToLoad(config.longTimeout());
+        networkUtils.waitForResourcesToLoad(config.longTimeout());
     }
 
     public WebElement waitForElementClickable(WebElement element) {

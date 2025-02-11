@@ -55,16 +55,15 @@ public class SearchTests extends BaseTest {
 
         signInPopup.closeSignInPopup();
         imagePage.goBack();
-        searchPage
-                .uncheckPersonalFilter()
-                .clickOnFirstPlusAsset();
+        searchPage.uncheckPersonalFilter();
+        searchPage.scrollToImagesSection();
+        String firstImageLink = searchPage.getFirstPlusImageLink();
+        searchPage.clickOnFirstPlusImage();
         signInPopup.closeSignInPopup();
         softAssert.assertTrue(editorPage.isEditorToolbarVisible(), "Editor toolbar should be visible");
         softAssert.assertTrue(editorPage.isCanvasVisible(), "Canvas should be visible");
-
-
-        System.out.println("debug");
-
+        softAssert.assertEquals(firstImageLink, searchPage.getCurrentUrl(), "Current url should be the same as image link");
+        softAssert.assertAll();
     }
 
 
