@@ -107,7 +107,7 @@ public class SearchPage extends BasePage<SearchPage> {
         return isInvisible(plusBadge);
     }
 
-    public SearchPage scrollToImagesSection() {
+    public SearchPage scrollDownToImagesSection() {
         scrollDown(200);
         return this;
     }

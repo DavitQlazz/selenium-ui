@@ -56,7 +56,7 @@ public class SearchTests extends BaseTest {
         signInPopup.closeSignInPopup();
         imagePage.goBack();
         searchPage.uncheckPersonalFilter();
-        searchPage.scrollToImagesSection();
+        searchPage.scrollDownToImagesSection();
         String firstImageLink = searchPage.getFirstPlusImageLink();
         searchPage.clickOnFirstPlusImage();
         signInPopup.closeSignInPopup();

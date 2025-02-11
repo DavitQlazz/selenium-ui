@@ -19,11 +19,6 @@ public class NetworkUtils {
 
     /**
      * Waits until the resources are loaded.
-     *
-     * <p>This method monitors the network requests and waits until the number of requests is not changed.
-     * </p>
-     *
-     * @param timeout the maximum time to wait for resources to load
      */
     public void waitForResourcesToLoad(int timeout) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
