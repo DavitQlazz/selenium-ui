@@ -1,6 +1,6 @@
 # UI Automation Framework
 
-This is a PicsArt UI Automation Framework.
+This is a Picsart UI Automation Framework.
 
 ## Features
 - **Java 21** language
