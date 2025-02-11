@@ -13,9 +13,9 @@ This is a Picsart UI Automation Framework.
 
 ## Getting Started
 1. Clone the repository
-2. Run `mvn test` to execute tests (Running tests in parallel with the following resolutions: 1024 x 768, 1440 x 900, and 1366 x 768.)
+2. Run `./mvnw test` to execute tests (Running tests in parallel with the following resolutions: 1024 x 768, 1440 x 900, and 1366 x 768.)
 
 ## Usage
-- Run specific suite: ` mvn test -Dsurefire.suiteXmlFiles=src/test/resources/xml/hd.xml`
-- Run with specific resolution: `mvn test -Dsurefire.suiteXmlFiles=src/test/resources/xml/hd.xml -Dresolution='1920x1080'`
-- Generate report: `mvn allure:serve`
+- Run specific suite: ` ./mvnw test -Dsurefire.suiteXmlFiles=src/test/resources/xml/hd.xml`
+- Run with specific resolution: `./mvnw test -Dsurefire.suiteXmlFiles=src/test/resources/xml/hd.xml -Dresolution='1920x1080'`
+- Generate report: `./mvnw allure:serve`
